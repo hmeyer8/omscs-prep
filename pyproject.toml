@@ -17,3 +17,6 @@ dev = [
     "mypy>=2.3.1",
     "pytest>=9.1.1",
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["logbook", "week", "reps"]
