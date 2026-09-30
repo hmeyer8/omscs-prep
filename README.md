@@ -12,7 +12,7 @@ The plan covers Python and object-oriented design, data structures and algorithm
 
 A weekly gate is passed only when every item on it meets all five conditions:
 
-1. **Blank file.** No notes, docs, earlier code, or AI.
+1. **Blank slate.** The item's code is deleted first. No notes, docs, earlier code, or AI.
 2. **Correct.** It passes that week's original test suite unchanged, edge cases included.
 3. **Fluent.** It's done in one sitting, without stalling on syntax or API lookups.
 4. **Explained.** I can walk through the design, the invariants, and the Big-O. A short version goes in the commit message.
@@ -81,16 +81,16 @@ A failed rebuild keeps the gate open. I re-study the gap and try again within 48
 
 ## Projects
 
-| Project | Week | What it demonstrates |
-| --- | --- | --- |
-| **Flight logbook CLI** | 01–03 | A pure-Python package with dataclasses, validation, streaming I/O, pluggable exporters, argparse subcommands, and a pytest suite |
-| **Sorting benchmark** | 05 | Insertion, merge, quick, and Timsort from n = 10² to 10⁶, with empirical growth rates on log-log axes |
-| **Regression tree from scratch** | 06 | CART-style splitting in NumPy, and how overfitting grows with tree depth |
-| **Nebraska route planner** | 08 | A weighted graph of towns and airports, with shortest paths (Dijkstra) and a minimum spanning tree (Kruskal), plotted |
-| **kNN bias–variance study** | 10 | A vectorized kNN regressor, and in-sample vs out-of-sample error as k varies |
-| **Exploratory data analysis report** | 11 | Distributions, correlations, and hypothesis tests on a real tabular dataset, written up in LaTeX |
-| **Supervised learning study** | 12–13 | Five learners compared with learning and validation curves, plus a written bias–variance analysis |
-| **Gridworld RL** | 13 | Value iteration, policy iteration, and Q-learning converging to the same optimal policy |
+| Project | Week | What it demonstrates | Where |
+| --- | --- | --- | --- |
+| **Flight logbook CLI** | 01–03 | A pure-Python package with dataclasses, validation, streaming I/O, pluggable exporters, argparse subcommands, and a pytest suite | `logbook/` (tags `logbook-v1` … `v3`) |
+| **Sorting benchmark** | 05 | Insertion, merge, quick, and Timsort from n = 10² to 10⁶, with empirical growth rates on log-log axes | `week/05/` |
+| **Regression tree from scratch** | 06 | CART-style splitting in NumPy, and how overfitting grows with tree depth | `week/06/regression_tree.py` |
+| **Nebraska route planner** | 08 | A weighted graph of towns and airports, with shortest paths (Dijkstra) and a minimum spanning tree (Kruskal), plotted | `week/08/` |
+| **kNN bias–variance study** | 10 | A vectorized kNN regressor, and in-sample vs out-of-sample error as k varies | `week/10/regressors.py` |
+| **Exploratory data analysis report** | 11 | Distributions, correlations, and hypothesis tests on a real tabular dataset, written up in LaTeX | `notes/eda_report.pdf` |
+| **Supervised learning study** | 12, 14 | Decision tree, kNN, and SVM compared with learning and validation curves, plus a written bias–variance analysis | `week/12/` + `notes/analysis_report.pdf` |
+| **Gridworld RL** | 13 | Value iteration, policy iteration, and Q-learning converging to the same optimal policy | `week/13/rl.py` |
 
 ---
 
@@ -116,10 +116,28 @@ Every study day follows the same loop:
 
 ```
 omscs-prep/
+├── logbook/          # flight logbook package (Weeks 01–03); tests in logbook/tests/
 ├── week/
-│   └── 01/ … 14/    # builds, tests, and cold rebuilds for each week
-├── reps/            # drill files rewritten from blank on a rolling basis
-└── notes/           # write-ups and reports
+│   └── 01/ … 14/     # one folder per week: topic code, tests, labs, notes
+├── reps/             # NumPy and pandas drills, rewritten from blank daily
+├── notes/            # LaTeX reports (EDA, supervised-learning analysis)
+└── data/             # small shared inputs; downloads go in data/raw/ (git-ignored)
+```
+
+Every week folder uses the same few files:
+
+| File | What it's for |
+| --- | --- |
+| `<topic>.py` | The week's implementations. Gate items live here |
+| `test_<topic>.py` | The spec, with one test class per gate item (for example `TestHashMap`) |
+| `lab.py` | Experiments that save plots to `figures/` |
+| `NOTES.md` | Design notes, Big-O, and what the plots show |
+| `problems/` | Timed practice problems, one per file |
+
+```bash
+uv run pytest                                   # every test in the repo
+uv run pytest week/04 -k TestHashMap            # one gate item
+uv run python -m logbook.cli summary data/flights.csv
 ```
 
 ---

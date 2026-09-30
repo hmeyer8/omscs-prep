@@ -190,3 +190,93 @@ this loop has a `while` statement. The body of the algorithm continues to cycle 
 ```
 
 ---
+
+## ch4
+
+if, elif, else
+```pycon
+>>> x = int(input("Please enter an integer: "))
+Please enter an integer: 42
+>>>if x < 0:
+      x = 0
+      print('Negative changed to zero')
+  elif x == 0:
+      print('Zero')
+  elif x == 1:
+      print('Single')
+  else:
+      print('More')
+More
+```
+for statements: 
+Pythons for statements iterate over the items of any sequence (a list or a string), in the order they appear in the sequence, e.g:
+
+```pycon
+>>> names = ['henry', 'dayton', 'sam']  
+>>> for x in names:
+...     print(x, len(x))
+... 
+henry 5
+dayton 6
+sam 3
+```
+if we are trying to modify a collection while iterating over the same collection, it is usually better to loop over a copy of the collection or create a new collection. The example below is showing how to loop over a new collection
+```pycon
+>>> users = {'Henry': 'active', 'Sam': 'inactive', 'Will': 'active'}   
+>>> for user, status in users.copy().items():
+...     if status =='inactive':
+...             del users[user]
+... 
+>>> users
+{'Henry': 'active', 'Will': 'active'}
+```
+This next one creates a new collection and puts the condition into the new collection. 
+```pycon
+>>> users
+{'Henry': 'active', 'Sam': 'inactive', 'Will': 'active'}
+>>> active_users = {}
+>>> for user, status in users.items():
+...     if status == 'active':
+...             active_users[user] = status
+>>> users
+{'Henry': 'active', 'Sam': 'inactive', 'Will': 'active'}
+>>> active_users
+{'Henry': 'active', 'Will': 'active'}
+```
+the range function is also handy: 
+```pycon
+>>> for i in range(4):
+...     print(i)
+... 
+0
+1
+2
+3
+>>> list(range(0,10,2))
+[0, 2, 4, 6, 8]
+```
+we can also go and iterate over the indices of a sequence with range() and len()
+```pycon
+>>> a = ['Mary', 'had', 'a', 'little', 'lamb']
+>>> for i in range(len(a)):
+...     print(i, a[i])
+... 
+0 Mary
+1 had
+2 a
+3 little
+4 lamb
+```
+okay so `break` breaks out of the innermost loop and into the next iteration of the outer loop, `continue`continues with the next iteration once the initial condition is met. 
+
+```pycon
+for n in range(2, 10):
+    for x in range(2, n):
+        if n % x == 0:
+            print(n, 'equals', x, '*', n//x)
+            break
+    else:
+        # loop fell through without finding a factor
+        print(n, 'is a prime number')
+```
+`pass` does nothing, commonly used to make minimal classes. Can also be used for a functional or conditional body when you are working on new code. 
