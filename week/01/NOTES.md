@@ -208,7 +208,7 @@ Please enter an integer: 42
       print('More')
 More
 ```
-for statements: 
+`for` statements: 
 Pythons for statements iterate over the items of any sequence (a list or a string), in the order they appear in the sequence, e.g:
 
 ```pycon
@@ -255,7 +255,7 @@ the range function is also handy:
 >>> list(range(0,10,2))
 [0, 2, 4, 6, 8]
 ```
-we can also go and iterate over the indices of a sequence with range() and len()
+we can also go and iterate over the indices of a sequence with range() and len(). with range we can only enumerate the range via `list(range(5))` or `for i in range(5)`
 ```pycon
 >>> a = ['Mary', 'had', 'a', 'little', 'lamb']
 >>> for i in range(len(a)):
