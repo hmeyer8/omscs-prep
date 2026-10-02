@@ -83,7 +83,7 @@ Default values are also only evaluated at the point of funnction definition as s
 5
 ```
 The default value is evaluated only once, this changes things for mutable objects such as lists, dicts, etc. 
-```pycon
+```py
 >>> def f(a, L = []):
 ...     L.append(a)
 ...     return L
@@ -100,4 +100,32 @@ def f(a, L=None):
         L = []
     L.append(a)
     return L
+```
+we can have positional arguments and keyword args. 
+```py
+f(L = 5) # keyword
+f(2,3) # positional, makes a,L = 2,3
+```
+---
+
+ Lambda expressions
+
+A lambda is a function written in one line without a name. Its a shortcut for a simple def. 
+
+```py
+def add(a,b):
+    return a + b
+
+add = lambda a,b: a+b
+```
+form is `lambda <parameters>: <expression>
+
+here is a function within a function:
+```py
+def make_incrementor(n):
+    return lambda x:x+n
+
+f = make_incrementor(42)
+print(f(3))
+45
 ```
