@@ -1,11 +1,11 @@
 states = ['   Alabama ', 'Georgia!', 'Georgia', 'georgia', 'FlOrIda', ' .....:         ' , 'south   carolina##', 'West virginia?']
-import re
-def clean_strings(strings):
+
+def distinct_character(strings):
     result = []
     for value in strings:
-        value = value.strip()
-        value = re.sub('[!#.?:]', '', value)
-        value = value.title()
-        result.append(value)
-    return print(result)
-clean_strings(states)
+        x = value.upper()
+        for n in x:
+            n.upper()
+            result.append(n)
+    print(set(result))
+distinct_character(states)
