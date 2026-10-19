@@ -423,7 +423,7 @@ def transp(inp):
     Practice input: [[2, 4, 6], [1, 3, 5], [7, 8, 9]].
     Leave the original matrix unchanged.
     """
-    out = [x for i in inp for x[n] in i; n++]
+    out = [x for i in inp for x[n] in i; n=0, n++]
     return out
 h = [[2, 4, 6], [1, 3, 5], [7, 8, 9]]
 print(transp(h))
