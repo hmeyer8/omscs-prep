@@ -48,4 +48,14 @@ class Logbook:
         return hbt
 
     
-        
+from recall import Flight
+
+f1 = Flight("2026-10-19", "C172", 1.5, "training")
+f2 = Flight("2026-10-20", "PA28", 2.0, "cross_country")
+f3 = Flight("2026-10-21", "C172", 0.75, "training")
+book = Logbook()
+book.add_flight(f1)
+book.add_flight(f2)
+book.add_flight(f3)
+
+print(f1.describe())
