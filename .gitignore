@@ -11,3 +11,15 @@ wheels/
 data/raw/
 scratch/
 .ipynb_checkpoints/
+
+# Local caches and machine-specific files
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+Thumbs.db
+
+# Local credentials and environment settings
+.env
+.env.*
+!.env.example

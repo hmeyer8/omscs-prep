@@ -1,153 +1,83 @@
-# omscs-prep
+# OMSCS Preparation
 
-> **If I can't rebuild it from a blank file, I don't know it yet.**
+**Python foundations, problem solving, and software engineering practice for graduate study in computer science.**
 
-This is my 14-week preparation for Georgia Tech's **OMSCS program (Machine Learning specialization)**, which I start in Spring 2027 with **CS 7641 Machine Learning** and **CS 6603 AI, Ethics & Society**.
+I'm Henry Meyer, a machine learning engineer building stronger computer science foundations ahead of Georgia Tech's OMSCS program. This repository documents that work through dated exercises, recall attempts, and technical notes. My long-term focus is building reliable machine learning systems.
 
-The plan covers Python and object-oriented design, data structures and algorithms, the scientific Python stack, and a preview of core ML methods. Each week ends with a **cold rebuild gate**: rebuilding the week's core implementations from scratch until I can do it cleanly and explain every line.
+> If I can't rebuild it from a blank file, I don't know it yet.
 
----
+[Selected work](#selected-work) · [Run examples](#run-examples) · [Learning journal](journal/README.md) · [Roadmap](docs/roadmap.md)
 
-## The rebuild standard
+## Current scope
 
-A weekly gate is passed only when every item on it meets all five conditions:
+The committed work currently focuses on Python: functions, collections, object-oriented programming, inheritance, composition, and file handling. The dated folders preserve learning in progress, including experiments and unfinished exercises.
 
-1. **Blank slate.** The item's code is deleted first. No notes, docs, earlier code, or AI.
-2. **Correct.** It passes that week's original test suite unchanged, edge cases included.
-3. **Fluent.** It's done in one sitting, without stalling on syntax or API lookups.
-4. **Explained.** I can walk through the design, the invariants, and the Big-O. A short version goes in the commit message.
-5. **Durable.** It gets rebuilt cold again a week later and at the next checkpoint (Weeks 3, 9, and 13).
+Algorithms, scientific Python, and machine learning projects are future learning targets in the [roadmap](docs/roadmap.md). They are not completed portfolio projects. The Flight/Logbook examples below are practice models; a packaged CLI and automated test suite are still future work.
 
-A failed rebuild keeps the gate open. I re-study the gap and try again within 48 hours.
+## Selected work
 
----
+Start here for a short tour of the code and the concepts behind it.
 
-## Roadmap
-
-| Phase | Weeks | Focus |
+| Example | What to look for | Discussion point |
 | --- | --- | --- |
-| Python & OOP | 01–03 | Idiomatic Python, data model, testing, inheritance vs composition, interfaces |
-| Data structures & algorithms | 04–09 | Big-O, recursion, hashing, sorting, trees, heaps, graphs, dynamic programming |
-| Data stack & statistics | 10–11 | NumPy, pandas, plotting, hypothesis testing, technical writing |
-| Machine learning | 12–14 | Supervised learning, randomized optimization, fairness, clustering, dimensionality reduction, MDPs, RL |
+| [Flight and Logbook](week/04/1025/recall.py) | A logbook stores Flight objects, sums logged hours, and tracks starting aircraft hours | Why each instance needs its own list; composition; logged versus cumulative hours |
+| [Grouping flight hours](week/04/1022/logbook.py) | A loop builds a dictionary of totals by flight type | Aggregation in one pass; handling an empty logbook |
+| [Vehicle and Truck](week/04/1024/vehicle.py) | A child class calls `super()`, inherits a cost method, and overrides `describe()` | What belongs in a shared parent and what belongs in a specialized child |
+| [Birthday search in pi](week/05/1026/test.py) | Reads a text file, searches its decimal digits, and reports a one-based position | Working-directory assumptions; input checks; zero-based versus one-based indexing |
 
----
+These examples show the learning progression. Input validation, import-safe demonstrations, and automated regression tests are next steps before promoting them into reusable projects.
 
-## Weekly gates
+## Run examples
 
-- [ ] **01 · Python fundamentals**
-  The core function set (`is_prime`, `gcd`, `fib`, `is_palindrome`, `second_largest`, …), list and dict utilities (`transpose`, `chunk`, `group_anagrams`, `word_freq`), a closure-based counter, and a `@timed` decorator
-
-- [ ] **02 · OOP I: classes, errors, iteration**
-  The logbook core model: a `Flight` dataclass, and a `Logbook` class that is iterable, sized, and sortable. Also a custom `InvalidFlightError` with a validating parser, and a streaming generator reader
-
-- [ ] **03 · OOP II: inheritance, interfaces, class design** · *checkpoint*
-  An `Aircraft` class hierarchy using `super()`, an `Exporter` ABC with two implementations, alternative constructors (`from_csv_row`, `from_csv`), a `Timer` context manager, and a `BaseLearner` interface with `fit` / `predict` and an `evaluate()` harness
-
-- [ ] **04 · Big-O, recursion, hashing**
-  `power(x, n)` in O(log n), backtracking `subsets` and `permutations`, a `DynamicArray` with doubling resize, and a `HashMap` with chaining and load-factor resize, checked against `dict` with randomized ops
-
-- [ ] **05 · Linear structures & sorting**
-  A stack, a queue, a circular buffer, and a `LinkedList` with iterative and recursive `reverse` plus Floyd cycle detection. Also `merge_sort`, randomized in-place quicksort, and `quickselect`
-
-- [ ] **06 · Divide & conquer, binary search, trees**
-  Karatsuba multiplication and binary-search variants (`first_ge`, `last_le`, search in a rotated array). All four tree traversals, including iterative in-order, and BST insert, search, and delete covering all three delete cases
-
-- [ ] **07 · Heaps & graphs I**
-  A `MinHeap` with sift up/down and O(n) heapify, and DFS with pre/post clocks. Topological sort two ways (DFS order and Kahn's algorithm), BFS with path reconstruction, and strongly connected components
-
-- [ ] **08 · Weighted graphs**
-  Dijkstra with a binary heap and path reconstruction, Bellman-Ford with negative-cycle detection, union-find with path compression and union by rank, and Kruskal's and Prim's MST algorithms
-
-- [ ] **09 · Dynamic programming** · *checkpoint*
-  Longest increasing subsequence with reconstruction, 0/1 knapsack, edit distance with alignment, chain matrix multiplication, and Floyd–Warshall. Each one starts from a written solution (subproblem, recurrence, base cases, runtime) before any code
-
-- [ ] **10 · NumPy**
-  A 15-drill NumPy rep set, pairwise distances via broadcasting with no loops, linear regression three ways (normal equation, least squares, gradient descent), and a vectorized kNN regressor
-
-- [ ] **11 · pandas & statistics**
-  A 12-drill pandas rep set and a time-series pipeline: aligning multiple tickers, forward then backward fill, daily and cumulative returns, rolling mean and standard-deviation bands. Also a group-rate analysis with `groupby` / `pivot_table`, and a bootstrap confidence interval
-
-- [ ] **12 · Machine learning I**
-  Randomized hill climbing, simulated annealing, and a genetic algorithm. Fairness metrics (statistical parity difference, disparate impact, true-positive-rate gap), and a learning-curve / validation-curve experiment pipeline
-
-- [ ] **13 · Machine learning II** · *checkpoint*
-  k-means from scratch, PCA via SVD, and value iteration, policy iteration, and tabular Q-learning on a gridworld
-
-- [ ] **14 · Cumulative rebuild**
-  One artifact from every phase, chosen at random, rebuilt cold to the full standard
-
----
-
-## Projects
-
-| Project | Week | What it demonstrates | Where |
-| --- | --- | --- | --- |
-| **Flight logbook CLI** | 01–03 | A pure-Python package with dataclasses, validation, streaming I/O, pluggable exporters, argparse subcommands, and a pytest suite | `logbook/` (tags `logbook-v1` … `v3`) |
-| **Sorting benchmark** | 05 | Insertion, merge, quick, and Timsort from n = 10² to 10⁶, with empirical growth rates on log-log axes | `week/05/` |
-| **Regression tree from scratch** | 06 | CART-style splitting in NumPy, and how overfitting grows with tree depth | `week/06/regression_tree.py` |
-| **Nebraska route planner** | 08 | A weighted graph of towns and airports, with shortest paths (Dijkstra) and a minimum spanning tree (Kruskal), plotted | `week/08/` |
-| **kNN bias–variance study** | 10 | A vectorized kNN regressor, and in-sample vs out-of-sample error as k varies | `week/10/regressors.py` |
-| **Exploratory data analysis report** | 11 | Distributions, correlations, and hypothesis tests on a real tabular dataset, written up in LaTeX | `notes/eda_report.pdf` |
-| **Supervised learning study** | 12, 14 | Decision tree, kNN, and SVM compared with learning and validation curves, plus a written bias–variance analysis | `week/12/` + `notes/analysis_report.pdf` |
-| **Gridworld RL** | 13 | Value iteration, policy iteration, and Q-learning converging to the same optimal policy | `week/13/rl.py` |
-
----
-
-## Method
-
-Every study day follows the same loop:
-
-1. **Recall.** Rewrite yesterday's key function from a blank file.
-2. **Learn.** Do the day's reading or lecture.
-3. **Build.** Implement it, with a passing test or a plot as feedback.
-4. **Log.** Commit, and note what broke and what fixed it.
-
-**Ground rules**
-- **Type it, don't paste it.**
-- **Predict before running:** the output, the shape, the complexity.
-- **Help ladder:** memory → docs → hint → pseudocode → solution. AI is used as a hint-giver only.
-- **Make it visible:** a test for every function and a plot for every experiment.
-- **Separate rebuild commits:** each cold rebuild is its own commit (`rebuild: <artifact>`), so the history shows every attempt.
-
----
-
-## Repository layout
-
-```
-omscs-prep/
-├── logbook/          # flight logbook package (Weeks 01–03); tests in logbook/tests/
-├── week/
-│   └── 01/ … 14/     # one folder per week: topic code, tests, labs, notes
-├── reps/             # NumPy and pandas drills, rewritten from blank daily
-├── notes/            # LaTeX reports (EDA, supervised-learning analysis)
-└── data/             # small shared inputs; downloads go in data/raw/ (git-ignored)
-```
-
-Every week folder uses the same few files:
-
-| File | What it's for |
-| --- | --- |
-| `<topic>.py` | The week's implementations. Gate items live here |
-| `test_<topic>.py` | The spec, with one test class per gate item (for example `TestHashMap`) |
-| `lab.py` | Experiments that save plots to `figures/` |
-| `NOTES.md` | Design notes, Big-O, and what the plots show |
-| `problems/` | Timed practice problems, one per file |
+The examples above use only the Python standard library. Use Python 3.11 or newer; no package installation is needed for these commands.
 
 ```bash
-uv run pytest                                   # every test in the repo
-uv run pytest week/04 -k TestHashMap            # one gate item
-uv run python -m logbook.cli summary data/flights.csv
+git clone https://github.com/hmeyer8/omscs-prep.git
+cd omscs-prep
+python week/04/1025/recall.py
+python week/04/1024/vehicle.py
 ```
 
----
+The logbook demonstration prints **3.5 logged hours**, **103.5 current aircraft hours**, and **0 logged hours** for the separate logbook.
 
-## Academic integrity
+The pi exercise opens a file relative to the working directory. Run it from its own folder:
 
-Everything here is independent practice, completed before coursework begins. No course assignments, solutions, or course materials are stored in this repository. Graded work is written fresh from each course's specification and follows that course's collaboration and AI-use policies.
+```bash
+cd week/05/1026
+python test.py
+```
 
----
+Enter a sequence such as `1415`; it starts at decimal digit **1**. See [development notes](docs/development.md) for the optional uv environment and the distinction between practice scripts and automated tests.
 
-## References
+## Repository guide
 
-*Fluent Python* (Ramalho) · *Python for Data Analysis* (McKinney) · *Algorithms* (Dasgupta, Papadimitriou, Vazirani) · MIT 6.006 (Spring 2020) · *Machine Learning* (Mitchell) · *Fairness and Machine Learning* (Barocas, Hardt, Narayanan) · *Reinforcement Learning: An Introduction* (Sutton & Barto)
+| Location | Contents |
+| --- | --- |
+| [`week/`](week/) | Dated practice under `week/NN/MMDD/`; code and notes currently extend through week 05, with later week placeholders |
+| [`journal/`](journal/README.md) | Reflection workflow and templates for daily entries and weekly reviews |
+| [`reps/`](reps/) | Placeholder for future repetition drills |
+| [`docs/roadmap.md`](docs/roadmap.md) | Original learning targets and proposed projects, explicitly marked as planned |
+| [`docs/development.md`](docs/development.md) | Setup, execution, and verification conventions |
+| [`pyproject.toml`](pyproject.toml) / [`uv.lock`](uv.lock) | Python requirements and the locked scientific Python environment |
+
+## Learning process
+
+1. **Recall:** attempt a small implementation from a blank file before checking references.
+2. **Build:** work through a concept and check a normal case plus an edge case.
+3. **Explain:** describe the behavior, design choices, and limitations in plain language.
+4. **Reflect:** record the bug, its cause, the fix, and the next independent rebuild in the [journal](journal/README.md).
+
+Preserve initial attempts so improvements remain visible. Journal entries should distinguish independent work from work completed with a book, documentation, hints, or AI assistance. A successful run is evidence for that example, not proof that every case works.
+
+## Next milestones
+
+- Extract one Flight/Logbook example into an importable module with a separate demonstration.
+- Add automated checks for empty logbooks, independent state, and totals by flight type.
+- Build introductory algorithm exercises with written runtime and space analysis.
+- Develop NumPy and probability foundations, then add documented ML experiments.
+
+## Sources and coursework
+
+This is a personal preparation repository. Book and web exercises belong to their respective sources; retain attribution when adapting them. The practice files include exercises based on *Python Crash Course* by Eric Matthes and PYnative prompts. Additional planned references are listed in the [roadmap](docs/roadmap.md).
+
+Keep graded course work and restricted course materials out of this public repository. Follow each course's collaboration and AI-use policies when coursework begins.
