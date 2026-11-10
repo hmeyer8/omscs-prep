@@ -17,4 +17,4 @@ class Vector:
         return Vector(self.x * scalar, self.y * scalar)
 
 v = Vector(3,2)
-print(v)
+print(v) 
